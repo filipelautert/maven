@@ -436,7 +436,10 @@ public class MojoExecutor {
                 for (Map.Entry<String, List<MojoExecution>> fork : forkedExecutions.entrySet()) {
                     String projectId = fork.getKey();
 
-                    int index = projectIndex.getIndices().get(projectId);
+                    Integer index = projectIndex.getIndices().get(projectId);
+                    if (index == null) {
+                        continue;
+                    }
 
                     MavenProject forkedProject = projectIndex.getProjects().get(projectId);
 
